@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Test Tailwind CSS and DaisyUI{% endblock %}
+
+{% block body %}
+    <div>
+        {% set available_daisyUI_themes = [
+            'dark', 'light', 'cupcake', 'bumblebee',
+            'emerald', 'corporate', 'synthwave', 'retro', 'cyberpunk', 'valentine', 'halloween', 'garden', 'forest',
+            'aqua', 'lofi', 'pastel', 'fantasy', 'wireframe', 'black', 'luxury', 'dracula', 'cmyk', 'autumn', 'business',
+            'acid', 'lemonade', 'night', 'coffee', 'winter', 'dim', 'nord', 'sunset', 'caramellatte', 'abyss', 'silk',
+        ] %}
+        <div class="navbar bg-base-100">
+            <div class="dropdown">
+                <label tabindex="0" class="btn m-1">Changer de Thème</label>
+                <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                    {% for theme in available_daisyUI_themes %}
+                        <li>
+                            <input
+                                    type="radio"
+                                    data-choose-theme="{{ theme }}"
+                                    name="theme-dropdown"
+                                    class="theme-controller btn btn-sm btn-block btn-ghost justify-start"
+                                    aria-label="{{ theme|capitalize }}"
+                                    value="{{ theme }}" />
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="min-h-screen flex items-center justify-center bg-gray-100">
+        <div class="card w-96 bg-base-100 shadow-xl">
+            <div class="card-body">
+                <h2 class="card-title">Tailwind CSS et DaisyUI fonctionnent !</h2>
+                <p>Si vous voyez ce texte avec des styles, cela signifie que Tailwind CSS et DaisyUI sont correctement configurés.</p>
+                <div class="card-actions justify-end">
+                    <button class="btn btn-primary">Bouton DaisyUI</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ajout d'un bloc utilisant les styles personnalisés -->
+        <div class="custom-style p-4 mt-4">
+            <p>Ceci est un texte avec un style personnalisé.</p>
+            <p class="nested">Ceci est un texte imbriqué avec un style personnalisé</p>
+        </div>
+
+        <div {{ stimulus_controller('hello') }}>
+
+        </div>
+    </div>
+{% endblock %}
